@@ -1,0 +1,1664 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanThreads | Modern Fashion & Apparel</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESET
+           ========================================================================== */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9fb;
+            --bg-accent-soft: #fff0f3;
+            --text-dark: #1e2022;
+            --text-muted: #6c757d;
+            --accent-color: #e63956;
+            --accent-hover: #c92a45;
+            --border-color: #eaeaea;
+            --shadow-sm: 0 4px 12px rgba(30, 32, 34, 0.05);
+            --shadow-md: 0 10px 25px rgba(30, 32, 34, 0.08);
+            --shadow-lg: 0 18px 35px rgba(230, 57, 86, 0.15);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --container-width: 1240px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .container {
+            width: 92%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 28px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(230, 57, 86, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(230, 57, 86, 0.35);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-dark);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           2. HEADER / NAVIGATION BAR (Pure CSS Toggle & Counter)
+           ========================================================================== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .icon-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            background-color: var(--bg-accent-soft);
+            color: var(--accent-color);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 3px;
+            right: 2px;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Pure CSS Search Bar Toggle */
+        #search-toggle {
+            display: none;
+        }
+
+        .search-bar-dropdown {
+            display: none;
+            background-color: var(--bg-secondary);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #search-toggle:checked ~ .search-bar-dropdown {
+            display: block;
+            animation: slideDown 0.25s ease;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 10px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-form input:focus {
+            border-color: var(--accent-color);
+        }
+
+        /* Mobile Hamburger Checkbox Hack */
+        #menu-toggle {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2.5px;
+            background-color: var(--text-dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
+            padding: 60px 0 80px;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--bg-accent-soft);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.6rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            color: var(--accent-color);
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 44px;
+        }
+
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat-item h4 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            aspect-ratio: 4 / 4.6;
+        }
+
+        .hero-image-card img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-image-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .hero-floating-badge {
+            position: absolute;
+            bottom: 24px;
+            left: -24px;
+            background-color: #ffffff;
+            padding: 16px 22px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .badge-dot {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--bg-accent-soft);
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* ==========================================================================
+           4. SHOP BY CATEGORY SECTION
+           ========================================================================== */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .category-card {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            height: 340px;
+            box-shadow: var(--shadow-sm);
+            display: block;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30, 32, 34, 0.82) 0%, rgba(30, 32, 34, 0.1) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 26px;
+            color: #ffffff;
+            transition: var(--transition);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .explore-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        .category-card:hover .explore-link {
+            color: #ff8fa3;
+            transform: translateX(4px);
+        }
+
+        /* ==========================================================================
+           5. OFFERS SECTION
+           ========================================================================== */
+        .offers-section {
+            padding: 20px 0 80px;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .offer-card {
+            border-radius: var(--radius-lg);
+            padding: 44px 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 290px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .offer-card.pink-theme {
+            background: linear-gradient(125deg, #fff0f3 0%, #ffe0e6 100%);
+            border: 1px solid #ffd1da;
+        }
+
+        .offer-card.charcoal-theme {
+            background: linear-gradient(125deg, #1e2022 0%, #2f3337 100%);
+            color: #ffffff;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            width: fit-content;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .pink-theme .offer-badge {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .charcoal-theme .offer-badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ff8fa3;
+        }
+
+        .offer-card h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .offer-card p {
+            font-size: 0.98rem;
+            margin-bottom: 24px;
+            max-width: 380px;
+        }
+
+        .pink-theme p {
+            color: var(--text-muted);
+        }
+
+        .charcoal-theme p {
+            color: #d1d5db;
+        }
+
+        .promo-code {
+            display: inline-block;
+            background-color: rgba(230, 57, 86, 0.2);
+            border: 1px dashed #ff8fa3;
+            color: #ff8fa3;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           6. FEATURED COLLECTIONS SECTION
+           ========================================================================== */
+        .collections-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .collection-card {
+            background-color: var(--bg-primary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .collection-img {
+            height: 290px;
+            overflow: hidden;
+        }
+
+        .collection-img img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-card:hover .collection-img img {
+            transform: scale(1.06);
+        }
+
+        .collection-content {
+            padding: 26px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .collection-content h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .collection-content p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .collection-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--accent-color);
+        }
+
+        .collection-link:hover {
+            gap: 12px;
+            color: var(--accent-hover);
+        }
+
+        /* ==========================================================================
+           7. TRENDING PRODUCTS SECTION
+           ========================================================================== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+        }
+
+        .product-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+        }
+
+        .product-img-box {
+            position: relative;
+            height: 300px;
+            background-color: #f4f4f6;
+            overflow: hidden;
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.06);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .badge-sale {
+            background-color: var(--accent-color);
+        }
+
+        .badge-new {
+            background-color: #1e2022;
+        }
+
+        .badge-trending {
+            background-color: #d946ef;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-category {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .product-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .current-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        /* Pure CSS Interactive Add to Bag Toggle */
+        .bag-checkbox {
+            display: none;
+        }
+
+        .add-to-bag-btn {
+            margin-top: auto;
+            width: 100%;
+            padding: 11px 16px;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-secondary);
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .add-to-bag-btn:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        .bag-checkbox:checked + .add-to-bag-btn {
+            background-color: #16a34a;
+            color: #ffffff;
+            border-color: #16a34a;
+        }
+
+        .bag-checkbox:checked + .add-to-bag-btn .btn-text-default {
+            display: none;
+        }
+
+        .bag-checkbox:not(:checked) + .add-to-bag-btn .btn-text-added {
+            display: none;
+        }
+
+        /* ==========================================================================
+           8. SHOPPING BENEFITS SECTION
+           ========================================================================== */
+        .benefits-section {
+            background-color: var(--bg-secondary);
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background-color: var(--bg-primary);
+            padding: 28px 22px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background-color: var(--bg-accent-soft);
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .benefit-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           9. NEWSLETTER SECTION
+           ========================================================================== */
+        .newsletter-section {
+            padding: 80px 0;
+        }
+
+        .newsletter-box {
+            background: linear-gradient(135deg, #1e2022 0%, #2b2e33 100%);
+            border-radius: var(--radius-lg);
+            padding: 64px 32px;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(230, 57, 86, 0.18);
+        }
+
+        .newsletter-box h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-box p {
+            color: #d1d5db;
+            max-width: 540px;
+            margin: 0 auto 30px;
+            font-size: 0.98rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 520px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 22px;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 15px 32px;
+            border-radius: 50px;
+            border: none;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           10. FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: #16181a;
+            color: #d1d5db;
+            padding: 70px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand .logo {
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            max-width: 300px;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 4px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 26px;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #9ca3af;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           11. RESPONSIVE MEDIA QUERIES (Tablet & Mobile)
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .category-grid,
+            .products-grid,
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .collections-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 24px 6%;
+                gap: 18px;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--shadow-md);
+                display: none;
+            }
+
+            #menu-toggle:checked ~ .nav-links {
+                display: flex;
+                animation: slideDown 0.25s ease;
+            }
+
+            .hero {
+                padding: 40px 0 60px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .hero-floating-badge {
+                left: 16px;
+                bottom: 16px;
+            }
+
+            .offers-grid,
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.85rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-grid,
+            .products-grid,
+            .benefits-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .offer-card {
+                padding: 32px 24px;
+            }
+
+            .offer-card h3 {
+                font-size: 1.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================================================
+         1. HEADER / NAVIGATION BAR
+         ====================================================================== -->
+    <header class="header">
+        <input type="checkbox" id="search-toggle">
+        <div class="container nav-container">
+            <!-- Brand Logo -->
+            <a href="#" class="logo">Urban<span>Threads</span></a>
+
+            <!-- Pure CSS Mobile Menu Toggle -->
+            <input type="checkbox" id="menu-toggle">
+
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#shop">Shop</a>
+                <a href="#collections">Collections</a>
+                <a href="#offers">Offers</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <!-- Action Icons & Hamburger -->
+            <div class="nav-actions">
+                <!-- Search Trigger -->
+                <label for="search-toggle" class="icon-btn" title="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </label>
+
+                <!-- Shopping Bag with Counter -->
+                <a href="#trending" class="icon-btn" title="Shopping Bag">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-badge">2</span>
+                </a>
+
+                <!-- Hamburger Menu Button -->
+                <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Expandable Search Input -->
+        <div class="search-bar-dropdown">
+            <div class="container">
+                <form class="search-form" action="#trending">
+                    <input type="text" placeholder="Search for dresses, tees, denim, jackets..." aria-label="Search products">
+                    <button type="submit" class="btn btn-primary" style="padding: 10px 22px;">Search</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         2. HERO SECTION
+         ====================================================================== -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <!-- Left Content -->
+            <div class="hero-content">
+                <span class="hero-tag">New Season Arrivals 2026</span>
+                <h1 class="hero-title">Style That <span>Moves</span> With You</h1>
+                <p class="hero-desc">
+                    Discover curated, everyday fashion crafted for comfort and confidence. Trend-forward silhouettes at prices that fit your lifestyle effortlessly.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#trending" class="btn btn-primary">Shop Now</a>
+                    <a href="#collections" class="btn btn-outline">View Collections</a>
+                </div>
+
+                <!-- Small Statistics -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h4>500+</h4>
+                        <p>Styles</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>24/7</h4>
+                        <p>Support</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Free</h4>
+                        <p>Delivery</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Model Image -->
+            <div class="hero-image-wrapper">
+                <div class="hero-image-card">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" 
+                         alt="UrbanThreads Fashion Model"
+                         onerror="this.src='https://placehold.co/600x700/fff0f3/e63956?text=UrbanThreads+Fashion'">
+                </div>
+                <div class="hero-floating-badge">
+                    <div class="badge-dot">★</div>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">4.9/5 Rated</strong>
+                        <span style="font-size:0.8rem; color:var(--text-muted);">By 25k+ Happy Shoppers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         3. SHOP BY CATEGORY SECTION
+         ====================================================================== -->
+    <section id="shop" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Curated Wardrobe</span>
+                <h2 class="section-title">Shop by Category</h2>
+            </div>
+
+            <div class="category-grid">
+                <!-- Category 1: Women -->
+                <a href="#trending" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80" 
+                         alt="Women's Fashion"
+                         onerror="this.src='https://placehold.co/400x500/222222/ffffff?text=Women'">
+                    <div class="category-overlay">
+                        <h3>Women</h3>
+                        <span class="explore-link">Explore →</span>
+                    </div>
+                </a>
+
+                <!-- Category 2: Men -->
+                <a href="#trending" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=700&q=80" 
+                         alt="Men's Fashion"
+                         onerror="this.src='https://placehold.co/400x500/222222/ffffff?text=Men'">
+                    <div class="category-overlay">
+                        <h3>Men</h3>
+                        <span class="explore-link">Explore →</span>
+                    </div>
+                </a>
+
+                <!-- Category 3: Kids -->
+                <a href="#trending" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80" 
+                         alt="Kids' Fashion"
+                         onerror="this.src='https://placehold.co/400x500/222222/ffffff?text=Kids'">
+                    <div class="category-overlay">
+                        <h3>Kids</h3>
+                        <span class="explore-link">Explore →</span>
+                    </div>
+                </a>
+
+                <!-- Category 4: Accessories -->
+                <a href="#trending" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80" 
+                         alt="Fashion Accessories"
+                         onerror="this.src='https://placehold.co/400x500/222222/ffffff?text=Accessories'">
+                    <div class="category-overlay">
+                        <h3>Accessories</h3>
+                        <span class="explore-link">Explore →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         4. OFFERS SECTION
+         ====================================================================== -->
+    <section id="offers" class="offers-section">
+        <div class="container">
+            <div class="offers-grid">
+                <!-- Offer Card 1 -->
+                <div class="offer-card pink-theme">
+                    <div>
+                        <span class="offer-badge">Limited Time Deal</span>
+                        <h3>Flat 40% Off</h3>
+                        <p>Refresh your seasonal wardrobe with flat 40% savings on selected dresses, crisp shirts, and everyday denim.</p>
+                    </div>
+                    <div>
+                        <a href="#trending" class="btn btn-primary">Claim Offer</a>
+                    </div>
+                </div>
+
+                <!-- Offer Card 2 -->
+                <div class="offer-card charcoal-theme">
+                    <div>
+                        <span class="offer-badge">Bundle & Save</span>
+                        <h3>Buy 2, Get 1 Free</h3>
+                        <p>Mix and match your favorite essentials across the store. Apply promo code <span class="promo-code">URBAN3</span> at checkout.</p>
+                    </div>
+                    <div>
+                        <a href="#trending" class="btn btn-primary">Shop Bundle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         5. FEATURED COLLECTIONS SECTION
+         ====================================================================== -->
+    <section id="collections" class="section-padding collections-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Editorial Lookbooks</span>
+                <h2 class="section-title">Featured Collections</h2>
+            </div>
+
+            <div class="collections-grid">
+                <!-- Collection 1 -->
+                <article class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" 
+                             alt="The Minimal Edit"
+                             onerror="this.src='https://placehold.co/500x350/eeeeee/1e2022?text=The+Minimal+Edit'">
+                    </div>
+                    <div class="collection-content">
+                        <div>
+                            <h3>The Minimal Edit</h3>
+                            <p>Clean lines, neutral tones, and breathable organic fabrics designed for effortless capsule dressing.</p>
+                        </div>
+                        <a href="#trending" class="collection-link">Explore Collection →</a>
+                    </div>
+                </article>
+
+                <!-- Collection 2 -->
+                <article class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=80" 
+                             alt="Street Style"
+                             onerror="this.src='https://placehold.co/500x350/eeeeee/1e2022?text=Street+Style'">
+                    </div>
+                    <div class="collection-content">
+                        <div>
+                            <h3>Street Style</h3>
+                            <p>Relaxed oversized fits, bold graphic layers, and statement denim built for city life.</p>
+                        </div>
+                        <a href="#trending" class="collection-link">Explore Collection →</a>
+                    </div>
+                </article>
+
+                <!-- Collection 3 -->
+                <article class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=80" 
+                             alt="Evening Luxe"
+                             onerror="this.src='https://placehold.co/500x350/eeeeee/1e2022?text=Evening+Luxe'">
+                    </div>
+                    <div class="collection-content">
+                        <div>
+                            <h3>Evening Luxe</h3>
+                            <p>Refined tailoring, satin finishes, and modern silhouettes crafted for unforgettable nights out.</p>
+                        </div>
+                        <a href="#trending" class="collection-link">Explore Collection →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         6. TRENDING PRODUCTS SECTION
+         ====================================================================== -->
+    <section id="trending" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Most Loved Right Now</span>
+                <h2 class="section-title">Trending Products</h2>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <span class="product-badge badge-sale">-30%</span>
+                        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=700&q=80" 
+                             alt="Floral Summer Dress"
+                             onerror="this.src='https://placehold.co/400x450/f4f4f6/1e2022?text=Floral+Summer+Dress'">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Women</span>
+                        <h3 class="product-name">Floral Summer Dress</h3>
+                        <div class="product-price-row">
+                            <span class="current-price">₹1,899</span>
+                            <span class="original-price">₹2,699</span>
+                        </div>
+                        <input type="checkbox" id="prod-1" class="bag-checkbox">
+                        <label for="prod-1" class="add-to-bag-btn">
+                            <span class="btn-text-default">Add to Bag</span>
+                            <span class="btn-text-added">✓ Added to Bag</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <span class="product-badge badge-new">New</span>
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80" 
+                             alt="Classic Cotton Tee"
+                             onerror="this.src='https://placehold.co/400x450/f4f4f6/1e2022?text=Classic+Cotton+Tee'">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Men</span>
+                        <h3 class="product-name">Classic Cotton Tee</h3>
+                        <div class="product-price-row">
+                            <span class="current-price">₹799</span>
+                            <span class="original-price">₹1,199</span>
+                        </div>
+                        <input type="checkbox" id="prod-2" class="bag-checkbox">
+                        <label for="prod-2" class="add-to-bag-btn">
+                            <span class="btn-text-default">Add to Bag</span>
+                            <span class="btn-text-added">✓ Added to Bag</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <span class="product-badge badge-sale">-25%</span>
+                        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80" 
+                             alt="Slim Fit Blue Jeans"
+                             onerror="this.src='https://placehold.co/400x450/f4f4f6/1e2022?text=Slim+Fit+Blue+Jeans'">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Denim</span>
+                        <h3 class="product-name">Slim Fit Blue Jeans</h3>
+                        <div class="product-price-row">
+                            <span class="current-price">₹2,199</span>
+                            <span class="original-price">₹2,999</span>
+                        </div>
+                        <input type="checkbox" id="prod-3" class="bag-checkbox">
+                        <label for="prod-3" class="add-to-bag-btn">
+                            <span class="btn-text-default">Add to Bag</span>
+                            <span class="btn-text-added">✓ Added to Bag</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <span class="product-badge badge-trending">Trending</span>
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=80" 
+                             alt="Oversized Beige Jacket"
+                             onerror="this.src='https://placehold.co/400x450/f4f4f6/1e2022?text=Oversized+Beige+Jacket'">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Outerwear</span>
+                        <h3 class="product-name">Oversized Beige Jacket</h3>
+                        <div class="product-price-row">
+                            <span class="current-price">₹3,499</span>
+                            <span class="original-price">₹4,999</span>
+                        </div>
+                        <input type="checkbox" id="prod-4" class="bag-checkbox">
+                        <label for="prod-4" class="add-to-bag-btn">
+                            <span class="btn-text-default">Add to Bag</span>
+                            <span class="btn-text-added">✓ Added to Bag</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         7. SHOPPING BENEFITS SECTION
+         ====================================================================== -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h4>Free Shipping</h4>
+                    <p>On all orders above ₹999</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="1 4 1 10 7 10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                    </div>
+                    <h4>Easy 15-Day Returns</h4>
+                    <p>Hassle-free exchange & pickup</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h4>Secure Payment</h4>
+                    <p>100% encrypted UPI & card checkout</p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h4>24/7 Customer Support</h4>
+                    <p>Dedicated stylists ready to assist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         8. NEWSLETTER SECTION
+         ====================================================================== -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-box">
+                <h2>Join the UrbanThreads Club</h2>
+                <p>Subscribe to unlock early access to new arrivals, members-only flash sales, and personalized style drops straight to your inbox.</p>
+                <form class="newsletter-form" action="#home">
+                    <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         9. FOOTER
+         ====================================================================== -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="#" class="logo">Urban<span>Threads</span></a>
+                    <p>Redefining contemporary everyday fashion with thoughtfully designed essentials that move effortlessly with your lifestyle.</p>
+                </div>
+
+                <!-- Shop Links -->
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#shop">Women</a></li>
+                        <li><a href="#shop">Men</a></li>
+                        <li><a href="#shop">Kids</a></li>
+                        <li><a href="#shop">Accessories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Links -->
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Shipping</a></li>
+                        <li><a href="#contact">Returns</a></li>
+                        <li><a href="#contact">Size Guide</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <!-- Instagram -->
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <!-- X (Twitter) -->
+                        <a href="#" class="social-icon" aria-label="X">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 UrbanThreads. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
